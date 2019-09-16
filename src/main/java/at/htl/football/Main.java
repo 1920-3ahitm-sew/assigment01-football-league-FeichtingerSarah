@@ -44,5 +44,7 @@ public class Main {
         {
             System.out.printf("%-20s %5d %5d %5d %5d %5d %5d %5d\n", t.getName(), t.getPoints(), t.getWins(), t.getDraws(), t.getDefeats(), t.getGoalsShot(), t.getGoalsReceived(), t.getGoalsShot() - t.getGoalsReceived());
         }
+
+        System.out.println("Pts...Points, W...Won, D...Drawn, L...Lost\nGF...Goals for, GA...Goals agains, GD...Goal Difference");
     }
 }
