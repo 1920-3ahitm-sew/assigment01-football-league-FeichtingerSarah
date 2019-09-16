@@ -18,7 +18,46 @@ public class Team implements Comparable<Team>{
 
     public void addMatch(Match match)
     {
-        
+        if (this.getName().equals(match.getHomeName()))
+        {
+            if (match.getHomeGoals() > match.getGuestGoals())
+            {
+                this.points = this.getPoints() + 3;
+                this.wins = this.getWins() + 1;
+            }
+            else if (match.getHomeGoals() == match.getGuestGoals())
+            {
+                this.points = this.getPoints() + 1;
+                this.draws = this.getDraws() + 1;
+            }
+            else
+            {
+                this.defeats = this.getDefeats() + 1;
+            }
+
+            this.goalsShot = this.getGoalsShot() + match.getHomeGoals();
+            this.goalsReceived = this.getGoalsReceived() + match.getGuestGoals();
+        }
+        else if (this.getName().equals(match.getGuestName()))
+        {
+            if (match.getGuestGoals() > match.getHomeGoals())
+            {
+                this.points = this.getPoints() + 3;
+                this.wins = this.getWins() + 1;
+            }
+            else if (match.getGuestGoals() == match.getHomeGoals())
+            {
+                this.points = this.getPoints() + 1;
+                this.draws = this.getDraws() + 1;
+            }
+            else
+            {
+                this.defeats = this.getDefeats() + 1;
+            }
+
+            this.goalsShot = this.getGoalsShot() + match.getGuestGoals();
+            this.goalsReceived= this.getGoalsReceived() + match.getHomeGoals();
+        }
     }
 
 
@@ -53,6 +92,10 @@ public class Team implements Comparable<Team>{
 
     public int compareTo(Team t)
     {
-        return -1;
+        if (t.getPoints() - this.getPoints() == 0) {
+            return (t.goalsShot - t.goalsReceived) - (this.goalsShot - this.goalsReceived);
+        }
+
+        return t.getPoints() - this.getPoints();
     }
 }

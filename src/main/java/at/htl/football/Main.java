@@ -7,38 +7,42 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class Main {
+    static League league = new League();
 
     public static void main(String[] args) {
-        League league = new League();
-        List lines = readTable();
-
-        for (int i  = 1; i < lines.size(); i++) {
-            String [] line = ((String) lines.get(i)).split(";");
-            Match m = new Match(line[1], line[2], Integer.parseInt(line[3]), Integer.parseInt(line[4]));
-
-            league.addMatchResult(m);
-        }
+        readFile();
+        List<Team> sortedTeam = league.getTable();
+        printTable(sortedTeam);
     }
 
-    public static List<String> readTable()
+    public static void readFile()
     {
         Path file = Paths.get("bundesliga-1819.csv");
 
         try
         {
             List<String> allLines = Files.readAllLines(file);
-            return allLines;
+
+            for (int i  = 1; i < allLines.size(); i++) {
+                String [] line = (allLines.get(i)).split(";");
+                Match m = new Match(line[1], line[2], Integer.parseInt(line[3]), Integer.parseInt(line[4]));
+
+                league.addMatchResult(m);
+            }
         }
         catch (IOException e)
         {
             System.out.println(e.getMessage());
         }
-
-        return null;
     }
 
-    private void printTable(List<Team> teams)
+    private static void printTable(List<Team> teams)
     {
+        System.out.println("Team                   Pts     W     D     L    GF    GA    GD");
 
+        for(Team t : teams)
+        {
+            System.out.printf("%-20s %5d %5d %5d %5d %5d %5d %5d\n", t.getName(), t.getPoints(), t.getWins(), t.getDraws(), t.getDefeats(), t.getGoalsShot(), t.getGoalsReceived(), t.getGoalsShot() - t.getGoalsReceived());
+        }
     }
 }
