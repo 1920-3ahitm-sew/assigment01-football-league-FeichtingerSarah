@@ -90,10 +90,11 @@ public class Team implements Comparable<Team>{
     }
 
 
+
     public int compareTo(Team t)
     {
         if (t.getPoints() - this.getPoints() == 0) {
-            return (t.goalsShot - t.goalsReceived) - (this.goalsShot - this.goalsReceived);
+            return (t.getGoalsShot() - t.getGoalsReceived()) - (this.getGoalsShot() - this.getGoalsReceived());
         }
 
         return t.getPoints() - this.getPoints();

@@ -31,6 +31,6 @@ public class League {
     public List<Team> getTable()
     {
         Collections.sort(teams);
-        return teams;
+        return this.teams;
     }
 }
