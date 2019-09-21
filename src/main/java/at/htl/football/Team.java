@@ -20,43 +20,35 @@ public class Team implements Comparable<Team>{
     {
         if (this.getName().equals(match.getHomeName()))
         {
-            if (match.getHomeGoals() > match.getGuestGoals())
-            {
-                this.points = this.getPoints() + 3;
-                this.wins = this.getWins() + 1;
-            }
-            else if (match.getHomeGoals() == match.getGuestGoals())
-            {
-                this.points = this.getPoints() + 1;
-                this.draws = this.getDraws() + 1;
-            }
-            else
-            {
-                this.defeats = this.getDefeats() + 1;
-            }
+            givePoints(match.getHomePoints());
 
             this.goalsShot = this.getGoalsShot() + match.getHomeGoals();
             this.goalsReceived = this.getGoalsReceived() + match.getGuestGoals();
         }
         else if (this.getName().equals(match.getGuestName()))
         {
-            if (match.getGuestGoals() > match.getHomeGoals())
-            {
-                this.points = this.getPoints() + 3;
-                this.wins = this.getWins() + 1;
-            }
-            else if (match.getGuestGoals() == match.getHomeGoals())
-            {
-                this.points = this.getPoints() + 1;
-                this.draws = this.getDraws() + 1;
-            }
-            else
-            {
-                this.defeats = this.getDefeats() + 1;
-            }
+            givePoints(match.getGuestPoints());
 
             this.goalsShot = this.getGoalsShot() + match.getGuestGoals();
             this.goalsReceived= this.getGoalsReceived() + match.getHomeGoals();
+        }
+    }
+
+    public void givePoints(int p)
+    {
+        if (p == 1)
+        {
+            this.points = this.getPoints() + 3;
+            this.wins = this.getWins() + 1;
+        }
+        else if (p == 0)
+        {
+            this.points = this.getPoints() + 1;
+            this.draws = this.getDraws() + 1;
+        }
+        else
+        {
+            this.defeats = this.getDefeats() + 1;
         }
     }
 

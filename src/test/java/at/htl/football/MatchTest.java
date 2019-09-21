@@ -19,5 +19,7 @@ class MatchTest {
         assertThat(m.getGuestName(), is("Rapid"));
         assertThat(m.getHomeGoals(), is(10));
         assertThat(m.getGuestGoals(), is(0));
+        assertThat(m.getHomePoints(), is(1));
+        assertThat(m.getGuestPoints(), is(-1));
     }
 }

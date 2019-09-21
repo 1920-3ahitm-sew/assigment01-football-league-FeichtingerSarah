@@ -34,5 +34,6 @@ class LeagueTest {
         assertThat(t.get(0).getName(), is("Salzburg"));
         assertThat(t.get(1).getName(), is("Rapid"));
         assertThat(t.size(), is(2));
+
     }
 }

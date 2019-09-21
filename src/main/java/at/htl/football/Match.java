@@ -35,10 +35,32 @@ public class Match {
     }
 
     public int getHomePoints() {
-        return homePoints;
+        if (getHomeGoals() > getGuestGoals())
+        {
+            return 1;
+        }
+        else if (getHomeGoals() == getGuestGoals())
+        {
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
     }
 
     public int getGuestPoints() {
-        return guestPoints;
+        if (getGuestGoals() > getHomeGoals())
+        {
+            return 1;
+        }
+        else if (getGuestGoals() == getHomeGoals())
+        {
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
     }
 }
